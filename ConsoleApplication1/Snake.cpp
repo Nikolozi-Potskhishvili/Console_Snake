@@ -4,7 +4,7 @@ Snake::Snake(int x, int y) {
 	body.push_front({x, y});
 	body.push_back({x,y - 1});
 	body.push_back({x,y - 2});
-	direction = Direction::UP;
+	direction = Direction::LEFT;
 }
 
 void Snake::move() {

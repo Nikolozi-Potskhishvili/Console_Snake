@@ -22,11 +22,13 @@ void Board::init(std::vector<std::vector<char>>& board) {
 }
 
 void Board::update() {
-    for (int i = 0; i < board.size(); i++) {
-        for (int k = 0; k < board[0].size(); k++) {
+    for (int i = 0; i < height; i++) {
+        for (int k = 0; k < width; k++) {
             std::cout << board[i][k];
         }
-        if (i != board.size() - 1) std::cout << '\n';
+        if (i != board.size() - 1) {
+            std::cout << '\n';
+        }
     }
 }
 
@@ -48,15 +50,19 @@ void Board::placeSnake(Snake& snake) {
         board[y][x] = ' ';
         if (x <= 1) {
             x = width - 2;
+            board[y][x] = '@';
         }
         else if (x >= width - 1) {
             x = 1;
+            board[y][x] = '@';
         }
         else if (y <= 1) {
             y = height - 2;
+            board[y][x] = '@';
         }
         else if (y >= height - 1) {
             y = 1;
+            board[y][x] = '@';
         }
         body[i].first = x;
         body[i].second = y;
