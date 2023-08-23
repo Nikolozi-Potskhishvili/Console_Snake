@@ -32,6 +32,8 @@ void Board::update() {
     }
 }
 
+
+
 void Board::placeSnake(Snake& snake) {
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -66,6 +68,15 @@ void Board::placeSnake(Snake& snake) {
         }
         body[i].first = x;
         body[i].second = y;
-        board[y][x] = '#';
+        if (i != 0) {
+            board[y][x] = '#';
+        }
+        else {
+            board[y][x] = '*';
+        }
     }
+}
+
+void Board::placeFood(Food& food, int x, int y) {
+    board[y][x] = 'O';
 }

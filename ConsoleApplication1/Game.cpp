@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <chrono>
 #include <thread>
-Game::Game(int h, int w, int startX, int startY):board(h, w),snake(startX, startY) {
+Game::Game(int h, int w, int startX, int startY):board(h, w),snake(startX, startY),food() {
 	isRunning = false;
 }
 
@@ -9,20 +9,24 @@ void Game::startGame() {
 	isRunning = true;
     board.placeSnake(snake);
     board.update();
+    int counter = 0;
 	while(isRunning) {
 		if(snake.checkCollision()) isRunning = false;
-        //handleInput();
+        if (counter == 0 || counter % 10 == 0) {
+            
+        }
+        handleInput();
         snake.move();
         board.placeSnake(snake);
 		board.update();
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(700));
+        counter++;
 	}
+    std::cout << "You LOST!!!!";
 }
 
 void Game::handleInput() {
-    char userInput = _getch();
-    if (userInput == 0 || userInput == 224) {
-        userInput = _getch(); // Get the extended key code
+        char userInput = _getch(); // Get the extended key code
         switch (userInput) {
         case 72: // Up arrow
             snake.changeDirection(Direction::UP);
@@ -37,7 +41,6 @@ void Game::handleInput() {
             snake.changeDirection(Direction::RIGHT);
             break;
         }
-    }
 }
 
 
