@@ -13,7 +13,8 @@ void Game::startGame() {
 	while(isRunning) {
 		if(snake.checkCollision()) isRunning = false;
         if (counter == 0 || counter % 10 == 0) {
-            
+            chooseRandomPosForGameObject(food);
+            board.placeGameObject(food);
         }
         handleInput();
         snake.move();
@@ -41,6 +42,12 @@ void Game::handleInput() {
             snake.changeDirection(Direction::RIGHT);
             break;
         }
+}
+
+void Game::chooseRandomPosForGameObject(GameObject& obj) {
+    int x = rand() % (board.getWidtht()) + 1;
+    int y = rand() % (board.getHeight()) + 1;
+    obj.setPosition(x, y);
 }
 
 

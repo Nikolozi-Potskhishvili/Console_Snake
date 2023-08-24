@@ -8,6 +8,7 @@ public:
 	Game(int h, int w, int startX, int startY);
 	void startGame();
 	void handleInput();
+	void chooseRandomPosForGameObject(GameObject& obj);
 private:
 	bool isRunning;
 	Board board;

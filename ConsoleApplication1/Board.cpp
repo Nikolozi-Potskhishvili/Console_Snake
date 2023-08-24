@@ -77,6 +77,23 @@ void Board::placeSnake(Snake& snake) {
     }
 }
 
-void Board::placeFood(Food& food, int x, int y) {
-    board[y][x] = 'O';
+
+
+void Board::placeGameObject(GameObject& obj) {
+    std::pair<int,int> curPos = obj.getPos();
+    board[curPos.second][curPos.first] = 'O';
+}
+
+void Board::removeGameObject(GameObject& obj) {
+    int x = obj.getPos().first;
+    int y = obj.getPos().second;
+    board[y][x] = ' ';
+}
+
+int Board::getHeight() {
+    return height;
+}
+
+int Board::getWidtht() {
+    return width;
 }
