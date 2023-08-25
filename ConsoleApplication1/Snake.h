@@ -1,6 +1,6 @@
 #pragma once
 #include <deque>
-#include "GameObject.h"
+#include "Food.h"
 enum class Direction {
 	UP,
 	DOWN,
@@ -15,11 +15,12 @@ public:
 	bool checkCollision();
 	void changeDirection(Direction newDirection);
 	std::deque<std::pair<int, int>>& getBody();
-	
-	
+	void eatFood(Food& obj);
+	bool checkFood(Food& obj);
 
 private:
 	Direction direction;
+	int length;
 	std::deque<std::pair<int, int>> body;
 };
 

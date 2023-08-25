@@ -34,17 +34,18 @@ void Board::update() {
 
 
 
-void Board::placeSnake(Snake& snake) {
+void Board::placeSnake(Snake& snake, Food& food) {
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
                 board[y][x] = '@';
-            }
+            } 
             else {
                 board[y][x] = ' ';
             }
         }
     }
+    if(food.doesExist()) placeGameObject(food);
     std::deque<std::pair<int, int>>& body = snake.getBody();
     for (size_t i = 0; i < body.size(); i++) {
         int x = body[i].first;
@@ -81,7 +82,11 @@ void Board::placeSnake(Snake& snake) {
 
 void Board::placeGameObject(GameObject& obj) {
     std::pair<int,int> curPos = obj.getPos();
-    board[curPos.second][curPos.first] = 'O';
+    int x = curPos.first;
+    int y = curPos.second;
+    /*std::cout << obj.getPos().first << " " << obj.getPos().second << '\n';
+    std::cout << x << " " << y << '\n';*/
+    board[y][x] = 'O';
 }
 
 void Board::removeGameObject(GameObject& obj) {

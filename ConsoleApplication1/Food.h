@@ -3,9 +3,10 @@
 
 class Food : public GameObject {
 public:
+	
 	void move() {};
-
+	int getImpact();
 private:
-	int impact;
+	int impact = 1;
 };
 

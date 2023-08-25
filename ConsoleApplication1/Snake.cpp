@@ -5,6 +5,7 @@ Snake::Snake(int x, int y) {
 	body.push_back({x,y - 1});
 	body.push_back({x,y - 2});
 	body.push_back({ x,y - 3 });
+	length = 4;
 	direction = Direction::LEFT;
 	pos = body.front();
 }
@@ -48,5 +49,18 @@ void Snake::changeDirection(Direction newDirection) {
 
 std::deque<std::pair<int, int>>& Snake::getBody() {
 	return body;
+}
+
+void Snake::eatFood(Food& food) {
+	int im = food.getImpact();
+	for (int i = 0; i < im; i++) {
+		std::pair<int, int> pr = body.back();
+		pr.second--;
+		body.push_back(pr);
+	}
+}
+
+bool Snake::checkFood(Food& obj) {
+	return pos == obj.getPos();
 }
 

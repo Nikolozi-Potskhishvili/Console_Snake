@@ -8,7 +8,7 @@ public:
 	Board(int h, int w);
 	void init(std::vector<std::vector<char>>& board);
 	void update();
-	void placeSnake(Snake& snake);
+	void placeSnake(Snake& snake,Food& food);
 	void placeGameObject(GameObject& obj);
 	void removeGameObject(GameObject& obj);
 	int getHeight();
